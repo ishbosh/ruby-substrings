@@ -19,3 +19,23 @@ def error_check(input, expected)
     end 
     return true
 end
+
+def get_input()
+    print "\nEnter a string to check: "
+    input_str = gets.chomp
+    print "\nEnter substrings to check (separate each with a space): "
+    input_substr = gets.chomp.downcase.split()
+    puts "\nString entered: #{input_str}"
+    puts "Substrings Entered: #{input_substr}" 
+    return input_str, input_substr
+end
+
+dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+puts "- - TESTS - -"
+puts "Substrings: #{dictionary}"
+puts "\nSingle Word: 'below' \n #{substrings("below", dictionary)}"
+puts "\nMulti Word: 'Howdy partner, sit down! How's it going?' \n #{substrings("Howdy partner, sit down! How's it going?", dictionary)}"
+puts "- - END TESTS - -"
+
+string, substrings = get_input()
+puts "Result: #{substrings(string, substrings)}"
