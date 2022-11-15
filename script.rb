@@ -1,24 +1,21 @@
 def substrings(str, substr_array)
-    unless str.class == String
-        puts "First argument must be a string." 
-        return
-    end 
-    unless substr_array.class == Array
-        puts "Second argument must be an array." 
-        return 
-    end
-    result = {}
+    # Check for Valid Arguments
+    error_check(str, String) && error_check(substr_array, Array) ? result = Hash.new(0) : return
     str = str.downcase
-    # check if the str includes each substr
     substr_array.each do |substr|
-        unless substr.class == String
-            puts "Array must contain only strings."
-            return result = nil
-        end
-        substr = substr.downcase
+        # Check for valid Array
+        error_check(substr, String) ? substr = substr.downcase : return
         if str.include?(substr)
             result[substr] = str.split(substr).length - 1
         end
     end
     result
 end 
+
+def error_check(input, expected)
+    unless input.class == expected
+        puts "Invalid argument - expected #{expected.to_s}." 
+        return false
+    end 
+    return true
+end
